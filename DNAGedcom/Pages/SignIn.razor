@@ -1,0 +1,114 @@
+﻿@page "/"
+@using DNAGedcom.Data.Models;
+@inject NavigationManager NavigationManager
+
+<section class="sign-in">
+    <div class="container">
+        <div class="sign-in-wrap">
+            <img src="assets/images/logo.svg" width="250" height="70" class="logo" alt="Logo"/>
+            <div class="card p-4 mt-2">
+                <h1 class="title">Sign In</h1>
+                
+                <EditForm Model="userModel" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
+                    <DataAnnotationsValidator />
+                    @if (invalidFields.Count > 0)
+                    {
+                        <div class="alert alert-danger mt-3 mb-2">
+                            <div class="alert-icon">
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="172 171 683 683">
+                                    <path fill="#fff" d="M512.5,587.5L262.5,838C252.167,848.333 239.5,853.5 224.5,853.5C209.5,853.5 196.917,848.417 186.75,838.25C176.583,828.083 171.5,815.5 171.5,800.5C171.5,785.5 176.667,772.833 187,762.5L437,512L187,262C176.667,251.667 171.5,239.167 171.5,224.5C171.5,217.167 172.833,210.167 175.5,203.5C178.167,196.833 181.917,191.167 186.75,186.5C191.583,181.833 197.167,178.083 203.5,175.25C209.833,172.417 216.833,171 224.5,171C239.167,171 251.667,176.167 262,186.5L512.5,437L762.5,186.5C773.167,175.833 785.833,170.5 800.5,170.5C807.833,170.5 814.75,171.917 821.25,174.75C827.75,177.583 833.417,181.417 838.25,186.25C843.083,191.083 846.833,196.75 849.5,203.25C852.167,209.75 853.5,216.667 853.5,224C853.5,238.667 848.333,251.167 838,261.5L587.5,512L838,762.5C848.667,773.167 854,785.833 854,800.5C854,807.833 852.583,814.667 849.75,821C846.917,827.333 843.083,832.917 838.25,837.75C833.417,842.583 827.75,846.417 821.25,849.25C814.75,852.083 807.833,853.5 800.5,853.5C785.5,853.5 772.833,848.333 762.5,838Z"></path>
+                                </svg>
+                            </div>
+                            Please enter your @string.Join(" and ", invalidFields)
+                        </div>
+                    }
+
+                    @if (invalidCredentialsError)
+                    {
+                        <div class="alert alert-danger mt-3 mb-2">
+                            <div class="alert-icon">
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="172 171 683 683">
+                                    <path fill="#fff" d="M512.5,587.5L262.5,838C252.167,848.333 239.5,853.5 224.5,853.5C209.5,853.5 196.917,848.417 186.75,838.25C176.583,828.083 171.5,815.5 171.5,800.5C171.5,785.5 176.667,772.833 187,762.5L437,512L187,262C176.667,251.667 171.5,239.167 171.5,224.5C171.5,217.167 172.833,210.167 175.5,203.5C178.167,196.833 181.917,191.167 186.75,186.5C191.583,181.833 197.167,178.083 203.5,175.25C209.833,172.417 216.833,171 224.5,171C239.167,171 251.667,176.167 262,186.5L512.5,437L762.5,186.5C773.167,175.833 785.833,170.5 800.5,170.5C807.833,170.5 814.75,171.917 821.25,174.75C827.75,177.583 833.417,181.417 838.25,186.25C843.083,191.083 846.833,196.75 849.5,203.25C852.167,209.75 853.5,216.667 853.5,224C853.5,238.667 848.333,251.167 838,261.5L587.5,512L838,762.5C848.667,773.167 854,785.833 854,800.5C854,807.833 852.583,814.667 849.75,821C846.917,827.333 843.083,832.917 838.25,837.75C833.417,842.583 827.75,846.417 821.25,849.25C814.75,852.083 807.833,853.5 800.5,853.5C785.5,853.5 772.833,848.333 762.5,838Z"></path>
+                                </svg>
+                            </div>
+                            Invalid credentials, Please check your username and password
+                        </div>
+                    }
+                    <div class="sign-in-form pt-2">
+                        <div class="control-container">
+                            <label for="username" class="form-label">Username:</label>
+                            <div class="form-control-wrap">
+                                <input type="text" id="username" placeholder="Enter your username" @bind-value="userModel.UserName" />
+                            </div>
+                        </div>
+                        <div class="control-container">
+                            <label for="password" class="form-label">Password:</label>
+                            <div class="form-control-wrap">
+                                <input type="password" id="password" placeholder="Enter your password" @bind-value="userModel.Password"/>
+                            </div>
+                        </div>
+                        <div class="control-container flex-horizontal">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="remember-me" checked>
+                                <label class="form-check-label" for="remember-me">
+                                    Remember Me
+                                </label>
+                            </div>
+                            <a class="accent-hyperlink" href="https://www.dnagedcom.com/recover-password.aspx">Forgot Password ?</a>
+                        </div>
+                        <button class="btn btn-primary sign-in-btn mt-2" type="submit">Sign in to my account</button>
+                        <span class="signup-message mt-1">Don't have and account? <a class="accent-hyperlink" href="https://www.dnagedcom.com/Account/Register.aspx">Sign up</a></span>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private UserModel userModel = new();
+    private List<string> invalidFields = new();
+    private bool invalidCredentialsError = false;
+
+    private void HandleInvalidSubmit()
+    {
+        if (string.IsNullOrWhiteSpace(userModel.UserName))
+        {
+            if (!invalidFields.Contains("username"))
+            {
+                invalidFields.Add("username");
+            }
+        }
+        else
+        {
+            invalidFields.Remove("username");
+        }
+
+        if (string.IsNullOrWhiteSpace(userModel.Password))
+        {
+            if (!invalidFields.Contains("password"))
+            {
+                invalidFields.Add("password");
+            }
+        }
+        else
+        {
+            invalidFields.Remove("password");
+        }
+    }
+
+    private void HandleSubmit()
+    {
+        invalidFields.Clear();
+
+        // Connect to backend and validate user credentials
+        if(userModel.UserName=="admin" && userModel.Password=="admin")
+        {
+            NavigationManager.NavigateTo("/dashboard/");
+        }
+        else
+        {
+            invalidCredentialsError = true;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNAGedcom", "DNAGedcom\DNAGedcom.csproj", "{FE3B371E-1D0F-4C45-9DBF-2A083D8F2E45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE3B371E-1D0F-4C45-9DBF-2A083D8F2E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE3B371E-1D0F-4C45-9DBF-2A083D8F2E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE3B371E-1D0F-4C45-9DBF-2A083D8F2E45}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FE3B371E-1D0F-4C45-9DBF-2A083D8F2E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE3B371E-1D0F-4C45-9DBF-2A083D8F2E45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE3B371E-1D0F-4C45-9DBF-2A083D8F2E45}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1F98CEA-3E9A-4188-90CB-6B07C4AFDC00}
+	EndGlobalSection
+EndGlobal

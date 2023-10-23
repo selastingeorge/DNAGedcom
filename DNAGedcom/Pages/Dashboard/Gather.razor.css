@@ -1,0 +1,66 @@
+﻿.gather
+{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.myheritage-login-card
+{
+    border-radius: 15px !important;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    font-family: Poppins;
+    color: #333333;
+    font-size: 13px;
+    justify-content: space-between;
+}
+
+.myheritage-login-card > .content-wrap
+{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+.btn-sign-in
+{
+    margin-top: auto;
+    padding: 10px 25px !important;
+    border-radius: 12px;
+    font-weight: 500 !important;
+}
+
+.file-upload
+{
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    gap:20px;
+}
+
+.file-upload > .card
+{
+    width:100%;
+}
+
+.file-uploader-btn
+{
+    width:100%;
+    height:auto;
+    border:1px solid #e6e6e6;
+    border-radius:10px;
+    padding:8px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.file-uploader-btn span
+{
+    font-size:13px;
+    font-family:Poppins;
+    padding-left:8px;
+    font-weight:500;
+}

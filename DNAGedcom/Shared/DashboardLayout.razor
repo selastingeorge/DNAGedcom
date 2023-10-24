@@ -20,7 +20,7 @@
                         <a class="nav-link @(IsActive("dashboard/gather/"))" href="/dashboard/gather/">Gather</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @(IsActive("dashboard/autosomal/"))" href="/dashboard/autosomal/">Autosomal</a>
+                        <a class="nav-link @(IsActive("dashboard/autosomal/",new List<string>{"collins-lead","chromosome-matrix"}))" href="/dashboard/autosomal/">Autosomal</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @(IsActive("dashboard/people/"))" href="/dashboard/people/">People</a>
@@ -41,8 +41,9 @@
 @code {
 
     // Checks for currently active page
-    private string IsActive(string page)
+    private string IsActive(string page,List<string> subpages=null)
     {
-        return (NavigationManager.Uri.Replace(NavigationManager.BaseUri,"")) == page ? "active" : "";
+        subpages = (subpages == null) ? new List<string>() : subpages;
+        return (NavigationManager.Uri.Replace(NavigationManager.BaseUri, "")) == page || subpages.Any(subpage => (NavigationManager.Uri.Replace(NavigationManager.BaseUri, "")).Contains(subpage)) ? "active" : "";
     }
 }

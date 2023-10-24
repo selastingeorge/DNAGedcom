@@ -11,17 +11,17 @@
     display: flex;
     flex-direction: row;
     gap: 20px;
-    font-family: Poppins;
     color: #333333;
-    font-size: 13px;
+    font-size: 14px;
     justify-content: space-between;
 }
 
 .myheritage-login-card > .content-wrap
 {
     display: flex;
-    flex-direction: column;
-    gap:20px;
+    flex-direction: row;
+    align-items:center;
+    gap:10px;
 }
 
 .btn-sign-in
@@ -32,12 +32,28 @@
     font-weight: 500 !important;
 }
 
+.btn-switch
+{
+    margin-top: auto;
+    padding: 10px 25px !important;
+    border-radius: 12px;
+    font-weight: 500 !important;
+    background: #ececec;
+    margin-left:auto;
+    border:none !important;
+}
+
+.btn-switch:hover
+{
+    background: #f2f2f2 !important;
+}
+
 .file-upload
 {
-    width:100%;
-    display:flex;
-    flex-direction:row;
-    gap:20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 }
 
 .file-upload > .card
@@ -63,4 +79,263 @@
     font-family:Poppins;
     padding-left:8px;
     font-weight:500;
+}
+
+.gather-flexbox
+{
+    width:100%;
+    display:flex;
+    align-items:stretch;
+    justify-content:stretch;
+    gap:20px;
+    margin-top:20px;
+}
+
+.gather-flexbox .card
+{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+
+}
+
+.gather-flexbox .card-item:last-child
+{
+    padding-bottom:0px;
+    border:none;
+}
+
+.card-item
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 15px;
+}
+
+.card-item .item-title
+{
+    font-size:14px;
+}
+
+.item-control
+{
+    display: flex;
+    gap: 15px;
+    max-width: 200px;
+}
+
+.item-control .form-control-wrap input
+{
+    height:40px;
+}
+
+.profile-selector
+{
+    width: 120px;
+    padding: 8px;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    outline: none;
+    margin-left: auto;
+    font-size: 14px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMxOTE5MTkiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWNoZXZyb24tZG93biI+PHBvbHlsaW5lIHBvaW50cz0iNiA5IDEyIDE1IDE4IDkiPjwvcG9seWxpbmU+PC9zdmc+");
+    background-position:right 8px center;
+    background-repeat:no-repeat;
+    background-size:18px;
+}
+
+.btn-actions
+{
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 500;
+    outline: none;
+    border:none;
+}
+
+.btn-actions:not(.active):hover
+{
+    background:rgba(0,0,0,0.05);
+}
+
+
+.btn-actions.active svg
+{
+    stroke: #fff;
+}
+
+.btn-actions svg
+{
+    width: 18px;
+    height: 18px;
+}
+
+.gmp-id-wrap
+{
+    margin-top:20px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:20px;
+}
+
+.gmp-id-wrap span
+{
+    font-size: 14px;
+    flex-shrink:0;
+}
+
+.delete-btn
+{
+    width:36px;
+    height:36px;
+    border:1px solid #e6e6e6;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:8px;
+    transition-duration:300ms;
+}
+
+.delete-btn:hover
+{
+    background:red;
+    border:1px solid #e6e6e6;
+}
+
+.delete-btn > svg
+{
+    transition-duration: 300ms;
+    flex-shrink: 0;
+}
+
+.delete-btn:hover svg
+{
+    stroke:#fff !important;
+}
+
+.card-item .switch
+{
+    margin-left:auto;
+    margin-right:20px;
+}
+
+.data-source
+{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:30px;
+    padding-bottom:30px;
+    overflow:hidden;
+}
+
+.data-source .card-wrapper
+{
+    width:100%;
+    max-width:700px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.data-source .card
+{
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:20px;
+    cursor:pointer;
+    transition-duration:300ms;
+}
+
+.data-source .card:hover
+{
+    background:var(--bs-primary);
+    color:#fff;
+}
+
+.data-source .card:hover .chevron-right
+{
+    stroke:#fff;
+}
+
+.provider-icon-wrap
+{
+    width: 60px;
+    height: 60px;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.provider-icon-wrap img
+{
+    width:40px;
+    max-height:50px;
+}
+
+.provider-details
+{
+    display:flex;
+    flex-direction:column;
+}
+
+.provider .title
+{
+    font-size: 18px;
+    font-weight:500;
+}
+
+.provider .description
+{
+    font-size:13px;
+}
+
+.provider .chevron-right
+{
+    margin-left:auto;
+}
+
+.myheritage-login-card .title
+{
+    font-size:18px;
+    font-weight:500;
+}
+
+
+@media screen and (max-width:768px)
+{
+    .myheritage-login-card
+    {
+        display:flex;
+        flex-direction:column;
+    }
+
+    .file-upload
+    {
+        flex-direction:column;
+    }
+
+    .gather-flexbox
+    {
+        flex-direction:column;
+    }
 }

@@ -1,0 +1,41 @@
+﻿@page "/dashboard/autosomal"
+@layout DashboardLayout
+
+<section class="data-source">
+    <h3>Choose a method</h3>
+    <div class="card-wrapper entrance-transition">
+        <a href="/dashboard/autosomal/collins-lead">
+            <div class="card p-4 provider">
+                <div class="provider-icon-wrap">
+                    <img src="/assets/images/genetics.png" alt="Ancestry">
+                </div>
+                <div class="provider-details">
+                    <span class="title">Collins Leeds Method (CLM)</span>
+                    <span class="description">Create a Collins Leeds method clustering of your matches</span>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#191919" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="chevron-right">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+        </a>
+        <a href="/dashboard/autosomal/chromosome-matrix">
+            <div class="card p-4 provider">
+                <div class="provider-icon-wrap">
+                    <img src="/assets/images/chromosomes.png" alt="23andme">
+                </div>
+                <div class="provider-details">
+                    <span class="title">Chromosome Matrix App (CMA)</span>
+                    <span class="description">Create a Chromosome Matrix App clustering of your matches</span>
+                </div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#191919" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="chevron-right">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+        </a>
+    </div>
+</section>
+
+@code {
+
+}

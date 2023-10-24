@@ -1,88 +1,326 @@
 ﻿@page "/dashboard/gather"
 @layout DashboardLayout
 
-<section class="gather">
-    <section class="card p-4 myheritage-login-card">
-        <div class="content-wrap">
-            <img src="/assets/images/logo-myheritage.svg" width="140" alt="MyHeritage logo" />
-            <span class="">Please login to your My Heritage account to import your data</span>
-        </div>
-        <a class="btn btn-primary p-2 btn-sign-in" href="">Sign in to My Heritage</a>
-    </section>
-
-    <section class="file-upload">
-        <div class="card p-4">
-            <div class="header">
-                <div class="card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007e42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-branch">
-                        <line x1="6" y1="3" x2="6" y2="15"></line>
-                        <circle cx="18" cy="6" r="3"></circle>
-                        <circle cx="6" cy="18" r="3"></circle>
-                        <path d="M18 9a9 9 0 0 1-9 9"></path>
-                    </svg>
+@if(dataSource==null)
+{
+    <section class="data-source">
+        <div class="card-wrapper entrance-transition">
+            <div class="card p-4 provider" onclick="@(() => this.changeSource("Ancestry"))">
+                <div class="provider-icon-wrap">
+                    <img src="/assets/images/ancestry.svg" alt="Ancestry">
                 </div>
-                <h3 class="card-title">Match File</h3>
+                <div class="provider-details">
+                    <span class="title">Ancestry</span>
+                    <span class="description">Gather data from Ancestry, including Matches,ICW and Match Trees</span>
+                </div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#191919" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="chevron-right">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
             </div>
-            @if (matchFileError!=null)
-            {
-                <div class="alert alert-danger mt-3 mb-2">
-                    <div class="alert-icon">
-                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="172 171 683 683">
-                            <path fill="#fff" d="M512.5,587.5L262.5,838C252.167,848.333 239.5,853.5 224.5,853.5C209.5,853.5 196.917,848.417 186.75,838.25C176.583,828.083 171.5,815.5 171.5,800.5C171.5,785.5 176.667,772.833 187,762.5L437,512L187,262C176.667,251.667 171.5,239.167 171.5,224.5C171.5,217.167 172.833,210.167 175.5,203.5C178.167,196.833 181.917,191.167 186.75,186.5C191.583,181.833 197.167,178.083 203.5,175.25C209.833,172.417 216.833,171 224.5,171C239.167,171 251.667,176.167 262,186.5L512.5,437L762.5,186.5C773.167,175.833 785.833,170.5 800.5,170.5C807.833,170.5 814.75,171.917 821.25,174.75C827.75,177.583 833.417,181.417 838.25,186.25C843.083,191.083 846.833,196.75 849.5,203.25C852.167,209.75 853.5,216.667 853.5,224C853.5,238.667 848.333,251.167 838,261.5L587.5,512L838,762.5C848.667,773.167 854,785.833 854,800.5C854,807.833 852.583,814.667 849.75,821C846.917,827.333 843.083,832.917 838.25,837.75C833.417,842.583 827.75,846.417 821.25,849.25C814.75,852.083 807.833,853.5 800.5,853.5C785.5,853.5 772.833,848.333 762.5,838Z"></path>
+            <div class="card p-4 provider" onclick="@(() => this.changeSource("23AndMe"))">
+                <div class="provider-icon-wrap">
+                    <img src="/assets/images/23andme.svg" alt="23andme">
+                </div>
+                <div class="provider-details">
+                    <span class="title">23AndMe</span>
+                    <span class="description">Gather data from 23andMe, including matches, chromosome and ICW</span>
+                </div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#191919" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="chevron-right">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="card p-4 provider" onclick="@(() => this.changeSource("Family Tree DNA"))">
+                <div class="provider-icon-wrap">
+                    <img src="/assets/images/family-tree-dna.png" alt="FamilyTreeDNA">
+                </div>
+                <div class="provider-details">
+                    <span class="title">Family Tree DNA</span>
+                    <span class="description">Gather data from FamilyTreeDNA, including matches, chromosome, ICW and Match Trees</span>
+                </div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#191919" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="chevron-right">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="card p-4 provider" onclick="@(() => this.changeSource("My Heritage"))">
+                <div class="provider-icon-wrap">
+                    <img src="/assets/images/my-heritage.svg" alt="MyHeritage">
+                </div>
+                <div class="provider-details">
+                    <span class="title">My Heritage</span>
+                    <span class="description">Gather data from MyHeritage, including matches, chromosome, ICW and Match Trees(Beta)</span>
+                </div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#191919" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="chevron-right">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="card p-4 provider" onclick="@(() => this.changeSource("GEDmatch"))">
+                <div class="provider-icon-wrap">
+                    <img src="/assets/images/ged-match.svg" alt="GEDMatch">
+                </div>
+                <div class="provider-details">
+                    <span class="title">GEDmatch</span>
+                    <span class="description">Gather data from GEDMatch</span>
+                </div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#191919" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="chevron-right">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <section class="gather entrance-transition mt-3">
+        <a class="btn back-btn" onclick="@(() => this.changeSource(null))">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>Go Back</span>
+        </a>
+        <section class="card p-4 myheritage-login-card">
+            <div class="content-wrap">
+                <div class="provider-icon-wrap">
+                    @if (dataSource == "Ancestry")
+                    {
+                        <img src="/assets/images/ancestry.svg" height="28" alt="Ancestry logo" />
+                    }
+                    else if (dataSource == "23AndMe")
+                    {
+                        <img src="/assets/images/23andme.svg" height="28" alt="23 and Me" />
+                    }
+                    else if (dataSource == "Family Tree DNA")
+                    {
+                        <img src="/assets/images/family-tree-dna.png" height="28" alt="Family Tree DNA" />
+                    }
+                    else if (dataSource == "My Heritage")
+                    {
+                        <img src="/assets/images/my-heritage.svg" height="28" alt="My Heritage" />
+                    }
+                    else if (dataSource == "GEDmatch")
+                    {
+                        <img src="/assets/images/ged-match.svg" height="28" alt="GED Match" />
+                    }
+                </div>
+                <div class="provider-details">
+                    <span class="title">@dataSource</span>
+                    <span>Please login to your @dataSource account to import your data</span>
+                </div>
+            </div>
+            <a class="btn btn-primary p-2 btn-sign-in" href="">Sign in to @dataSource</a>
+        </section>
+
+        <section class="file-upload">
+            <div class="card p-4">
+                <div class="header">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007e42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-branch">
+                            <line x1="6" y1="3" x2="6" y2="15"></line>
+                            <circle cx="18" cy="6" r="3"></circle>
+                            <circle cx="6" cy="18" r="3"></circle>
+                            <path d="M18 9a9 9 0 0 1-9 9"></path>
                         </svg>
                     </div>
-                    @matchFileError
+                    <h3 class="card-title">Match File</h3>
                 </div>
-            }
-            <div class="file-uploader-btn @((matchFileError!=null)?"mt-2":"mt-4")">
-                <span>@((matchFile != null) ? matchFile.Name : "No file choosen")</span>
-                <label for="match-uploader">
-                    <a class="btn btn-primary p-2 px-3">Browse</a>
-                </label>
-                <InputFile id="match-uploader" class="file-browser" OnChange="@OnMatchFileUpload"></InputFile>
-            </div>
-        </div>
-        <div class="card p-4">
-            <div class="header">
-                <div class="card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007e42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                    </svg>
+                @if (matchFileError != null)
+                {
+                    <div class="alert alert-danger mt-3 mb-2">
+                        <div class="alert-icon">
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="172 171 683 683">
+                                <path fill="#fff" d="M512.5,587.5L262.5,838C252.167,848.333 239.5,853.5 224.5,853.5C209.5,853.5 196.917,848.417 186.75,838.25C176.583,828.083 171.5,815.5 171.5,800.5C171.5,785.5 176.667,772.833 187,762.5L437,512L187,262C176.667,251.667 171.5,239.167 171.5,224.5C171.5,217.167 172.833,210.167 175.5,203.5C178.167,196.833 181.917,191.167 186.75,186.5C191.583,181.833 197.167,178.083 203.5,175.25C209.833,172.417 216.833,171 224.5,171C239.167,171 251.667,176.167 262,186.5L512.5,437L762.5,186.5C773.167,175.833 785.833,170.5 800.5,170.5C807.833,170.5 814.75,171.917 821.25,174.75C827.75,177.583 833.417,181.417 838.25,186.25C843.083,191.083 846.833,196.75 849.5,203.25C852.167,209.75 853.5,216.667 853.5,224C853.5,238.667 848.333,251.167 838,261.5L587.5,512L838,762.5C848.667,773.167 854,785.833 854,800.5C854,807.833 852.583,814.667 849.75,821C846.917,827.333 843.083,832.917 838.25,837.75C833.417,842.583 827.75,846.417 821.25,849.25C814.75,852.083 807.833,853.5 800.5,853.5C785.5,853.5 772.833,848.333 762.5,838Z"></path>
+                            </svg>
+                        </div>
+                        @matchFileError
+                    </div>
+                }
+                <div class="file-uploader-btn @((matchFileError!=null)?"mt-2":"mt-4")">
+                    <span>@((matchFile != null) ? matchFile.Name : "No file choosen")</span>
+                    <label for="match-uploader">
+                        <a class="btn btn-primary p-2 px-3">Browse</a>
+                    </label>
+                    <InputFile id="match-uploader" class="file-browser" OnChange="@OnMatchFileUpload"></InputFile>
                 </div>
-                <h3 class="card-title">Chromosome File</h3>
             </div>
-            @if (chromosomeFileError != null)
-            {
-                <div class="alert alert-danger mt-3 mb-2">
-                    <div class="alert-icon">
-                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="172 171 683 683">
-                            <path fill="#fff" d="M512.5,587.5L262.5,838C252.167,848.333 239.5,853.5 224.5,853.5C209.5,853.5 196.917,848.417 186.75,838.25C176.583,828.083 171.5,815.5 171.5,800.5C171.5,785.5 176.667,772.833 187,762.5L437,512L187,262C176.667,251.667 171.5,239.167 171.5,224.5C171.5,217.167 172.833,210.167 175.5,203.5C178.167,196.833 181.917,191.167 186.75,186.5C191.583,181.833 197.167,178.083 203.5,175.25C209.833,172.417 216.833,171 224.5,171C239.167,171 251.667,176.167 262,186.5L512.5,437L762.5,186.5C773.167,175.833 785.833,170.5 800.5,170.5C807.833,170.5 814.75,171.917 821.25,174.75C827.75,177.583 833.417,181.417 838.25,186.25C843.083,191.083 846.833,196.75 849.5,203.25C852.167,209.75 853.5,216.667 853.5,224C853.5,238.667 848.333,251.167 838,261.5L587.5,512L838,762.5C848.667,773.167 854,785.833 854,800.5C854,807.833 852.583,814.667 849.75,821C846.917,827.333 843.083,832.917 838.25,837.75C833.417,842.583 827.75,846.417 821.25,849.25C814.75,852.083 807.833,853.5 800.5,853.5C785.5,853.5 772.833,848.333 762.5,838Z"></path>
+            <div class="card p-4">
+                <div class="header">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007e42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                         </svg>
                     </div>
-                    @chromosomeFileError
+                    <h3 class="card-title">Chromosome File</h3>
                 </div>
-            }
-            <div class="file-uploader-btn @((chromosomeFileError!=null)?"mt-2":"mt-4")">
-                <span>@((chromosomeFile != null) ? chromosomeFile.Name : "No file choosen")</span>
-                <label for="chromosome-file">
-                    <a class="btn btn-primary p-2 px-3">Browse</a>
-                </label>
-                <InputFile id="chromosome-file" class="file-browser" OnChange="@OnChromosomeFileUpload"></InputFile>
+                @if (chromosomeFileError != null)
+                {
+                    <div class="alert alert-danger mt-3 mb-2">
+                        <div class="alert-icon">
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="172 171 683 683">
+                                <path fill="#fff" d="M512.5,587.5L262.5,838C252.167,848.333 239.5,853.5 224.5,853.5C209.5,853.5 196.917,848.417 186.75,838.25C176.583,828.083 171.5,815.5 171.5,800.5C171.5,785.5 176.667,772.833 187,762.5L437,512L187,262C176.667,251.667 171.5,239.167 171.5,224.5C171.5,217.167 172.833,210.167 175.5,203.5C178.167,196.833 181.917,191.167 186.75,186.5C191.583,181.833 197.167,178.083 203.5,175.25C209.833,172.417 216.833,171 224.5,171C239.167,171 251.667,176.167 262,186.5L512.5,437L762.5,186.5C773.167,175.833 785.833,170.5 800.5,170.5C807.833,170.5 814.75,171.917 821.25,174.75C827.75,177.583 833.417,181.417 838.25,186.25C843.083,191.083 846.833,196.75 849.5,203.25C852.167,209.75 853.5,216.667 853.5,224C853.5,238.667 848.333,251.167 838,261.5L587.5,512L838,762.5C848.667,773.167 854,785.833 854,800.5C854,807.833 852.583,814.667 849.75,821C846.917,827.333 843.083,832.917 838.25,837.75C833.417,842.583 827.75,846.417 821.25,849.25C814.75,852.083 807.833,853.5 800.5,853.5C785.5,853.5 772.833,848.333 762.5,838Z"></path>
+                            </svg>
+                        </div>
+                        @chromosomeFileError
+                    </div>
+                }
+                <div class="file-uploader-btn @((chromosomeFileError!=null)?"mt-2":"mt-4")">
+                    <span>@((chromosomeFile != null) ? chromosomeFile.Name : "No file choosen")</span>
+                    <label for="chromosome-file">
+                        <a class="btn btn-primary p-2 px-3">Browse</a>
+                    </label>
+                    <InputFile id="chromosome-file" class="file-browser" OnChange="@OnChromosomeFileUpload"></InputFile>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="">
+        <section class="gather-details mb-4">
+            <div class="card p-4">
+                <div class="header">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007e42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Gather Details</h3>
+                    <select class="profile-selector">
+                        <option disabled selected>Choose</option>
+                        <option>Steve</option>
+                        <option>Jacob</option>
+                    </select>
+                </div>
 
+                <div class="gather-flexbox">
+                    <div class="card p-4">
+                        <div class="card-item">
+                            <span class="item-title">CM Range</span>
+                            <div class="item-control">
+                                <div class="control-container">
+                                    <div class="form-control-wrap">
+                                        <input type="number" id="min" min="0" placeholder="Min" />
+                                    </div>
+                                </div>
+                                <div class="control-container">
+                                    <div class="form-control-wrap">
+                                        <input type="number" id="max" min="0" placeholder="Max" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-item">
+                            <span class="item-title">Gather Chromosome</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                            <button class="btn delete-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-item">
+                            <span class="item-title">Gather ICW</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                            <button class="btn delete-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-item">
+                            <span class="item-title">Gather Triangulation</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                            <button class="btn delete-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-item">
+                            <span class="item-title">Gather Trees</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                            <button class="btn delete-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card p-4">
+                        <button class="btn btn-primary btn-actions active">
+                            <span>Gather DNA</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+
+                        </button>
+                        <button class="btn btn-actions">
+                            <span>Run Report</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                        <button class="btn btn-actions">
+                            <span>Sync to GF</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                        <button class="btn btn-actions">
+                            <span>Cancel</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="gmp-id-wrap card p-4">
+                    <span>GMP ID:</span>
+                    <div class="control-container w-100">
+                        <div class="form-control-wrap w-100">
+                            <input type="text" class="w-100" placeholder="VK7JG-NPHTM-C97JM-9MPGT-3V66T" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </section>
-</section>
+}
 
 @code {
+    private string dataSource = null;
+
     private IBrowserFile matchFile;
     private IBrowserFile chromosomeFile;
 
     private string matchFileError=null;
     private string chromosomeFileError = null;
+
+    private void changeSource(string source)
+    {
+        dataSource = source;
+    }
 
     private bool isValidFileType(IBrowserFile file, List<string> extensions)
     {

@@ -1,0 +1,145 @@
+﻿@page "/dashboard/autosomal/collins-lead"
+@layout DashboardLayout
+
+<section class="collins-lead pb-4">
+    <a href="/dashboard/autosomal/" class="btn back-btn mt-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <span>Go Back</span>
+    </a>
+    <div class="card p-4">
+        <div class="header">
+            <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007e42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+            </div>
+            <h3 class="card-title">Collins lead method</h3>
+        </div>
+
+        <div class="controls-wrapper">
+            <div class="control-row">
+                <div class="control-container">
+                    <label for="kit-filter" class="form-label">DNA Kit Filter:</label>
+                    <div class="form-control-wrap">
+                        <input type="text" id="kit-filter" placeholder="Kit Filter" />
+                    </div>
+                </div>
+                <div class="control-container">
+                    <label for="dna-kit" class="form-label">DNA Kit:</label>
+                    <select id="dna-kit" class="dropdown-selector">
+                        <option disabled selected>Choose the DNA kit</option>
+                        <option>DNA Kit 1</option>
+                        <option>DNA Kit 2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-row">
+                <div class="control-row">
+                    <div class="control-container">
+                        <label for="kit-filter" class="form-label">cM Range From:</label>
+                        <div class="form-control-wrap">
+                            <input type="text" id="kit-filter" placeholder="From" />
+                        </div>
+                    </div>
+                    <div class="control-container">
+                        <label for="kit-filter" class="form-label">cM Range To:</label>
+                        <div class="form-control-wrap">
+                            <input type="text" id="kit-filter" placeholder="To" />
+                        </div>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <div class="control-container">
+                        <label for="kit-filter" class="form-label">Minimum Shared cM:</label>
+                        <div class="form-control-wrap">
+                            <input type="text" id="kit-filter" placeholder="Minimum Value" />
+                        </div>
+                    </div>
+                    <div class="control-container">
+                        <label for="dna-kit" class="form-label">Inclusion Threshold:</label>
+                        <select id="dna-kit" class="dropdown-selector">
+                            <option disabled selected>Choose Threshold</option>
+                            <option>0.5</option>
+                            <option>1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-row">
+                <div class="control-container">
+                    <label for="dna-kit" class="form-label">Sort By:</label>
+                    <select id="dna-kit" class="dropdown-selector">
+                        <option>Inclusion</option>
+                        <option>Exclusion</option>
+                    </select>
+                </div>
+                <div class="control-container">
+                    <label for="dna-kit" class="form-label">Cluster Sort:</label>
+                    <select id="dna-kit" class="dropdown-selector">
+                        <option>By Size, Superclustered</option>
+                        <option>By Size, Semiclustered</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-row">
+                <div class="control-container">
+                    <label for="kit-filter" class="form-label">Surname List:</label>
+                    <div class="form-control-wrap">
+                        <input type="text" id="kit-filter" placeholder="Enter the Surnames" />
+                    </div>
+                </div>
+                <div class="control-container">
+                    <label for="dna-kit" class="form-label">Tag Grouping Options:</label>
+                    <select id="dna-kit" class="dropdown-selector">
+                        <option>No Tag Weight</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-row">
+                <div class="card p-4 w-100 switch-controls">
+                    <div class="card-item">
+                        <span class="item-title">Include Unclustered Matches</span>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="card-item">
+                        <span class="item-title">Paint Midline</span>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="card p-4 w-100 switch-controls">
+                    <div class="card-item">
+                        <span class="item-title">Open HTML when Done</span>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="card-item">
+                        <span class="item-title">Include Chromo Data</span>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-row">
+                <button class="btn btn-primary btn-run-grouping">Run Grouping</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+
+}
